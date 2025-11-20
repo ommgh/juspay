@@ -2,6 +2,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "./app-sidebar";
 import { Header } from "./header";
 import { RightSidebar } from "./right-sidebar";
+import Dashboard from "../default";
 
 const Sidebar = () => {
   return (
@@ -9,7 +10,7 @@ const Sidebar = () => {
       <AppSidebar side="left" />
       <SidebarInset className="h-full overflow-hidden">
         <Header />
-        {/*<div className="p-4">Hello</div>*/}
+        <Dashboard />
       </SidebarInset>
       <RightSidebar side="right" />
     </SidebarProvider>

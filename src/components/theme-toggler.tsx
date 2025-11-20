@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { PiMoonDuotone, PiSunDuotone } from "react-icons/pi";
 import { flushSync } from "react-dom";
 
 import { cn } from "@/lib/utils";
@@ -77,7 +77,7 @@ export const ThemeToggler = ({
       className={cn(className)}
       {...props}
     >
-      {isDark ? <Sun size={20} /> : <Moon size={20} />}
+      {isDark ? <PiSunDuotone size={20} /> : <PiMoonDuotone size={20} />}
       <span className="sr-only">Toggle theme</span>
     </button>
   );

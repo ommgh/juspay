@@ -1,6 +1,7 @@
 "use client";
 
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { LuChevronRight } from "react-icons/lu";
+import { IconType } from "react-icons";
 import {
   Collapsible,
   CollapsibleContent,
@@ -23,7 +24,7 @@ export function NavMain({
   items: {
     title: string;
     url: string;
-    icon?: LucideIcon;
+    icon?: IconType;
     isActive?: boolean;
     items?: {
       title: string;
@@ -45,7 +46,7 @@ export function NavMain({
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
-                  <ChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  <LuChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </SidebarMenuButton>

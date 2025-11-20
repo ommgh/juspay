@@ -2,23 +2,20 @@
 
 import { ComponentProps } from "react";
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Folder,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  ShoppingBag,
-  SquareTerminal,
-} from "lucide-react";
+  PiIdentificationBadgeDuotone,
+  PiFolderDuotone,
+  PiShoppingBagOpenDuotone,
+  PiChartPieSliceDuotone,
+  PiBookOpenDuotone,
+  PiIdentificationCardDuotone,
+  PiUsersThreeDuotone,
+  PiNotebookDuotone,
+  PiChatsTeardropDuotone,
+} from "react-icons/pi";
+import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -50,7 +47,7 @@ const data = {
     {
       title: "User Profile",
       url: "#",
-      icon: SquareTerminal,
+      icon: PiIdentificationBadgeDuotone,
       isActive: true,
       items: [
         {
@@ -78,7 +75,7 @@ const data = {
     {
       title: "Account",
       url: "#",
-      icon: Bot,
+      icon: PiIdentificationCardDuotone,
       items: [
         {
           title: "Genesis",
@@ -97,7 +94,7 @@ const data = {
     {
       title: "Corporate",
       url: "#",
-      icon: BookOpen,
+      icon: PiUsersThreeDuotone,
       items: [
         {
           title: "Introduction",
@@ -120,7 +117,7 @@ const data = {
     {
       title: "Blog",
       url: "#",
-      icon: Settings2,
+      icon: PiNotebookDuotone,
       items: [
         {
           title: "General",
@@ -143,7 +140,7 @@ const data = {
     {
       title: "Social",
       url: "#",
-      icon: Settings2,
+      icon: PiChatsTeardropDuotone,
       items: [
         {
           title: "General",
@@ -168,13 +165,13 @@ const data = {
     {
       title: "Default",
       url: "#",
-      icon: PieChart,
+      icon: PiChartPieSliceDuotone,
       items: [],
     },
     {
       title: "e-Commerce",
       url: "#",
-      icon: ShoppingBag,
+      icon: PiShoppingBagOpenDuotone,
       items: [
         {
           title: "General",
@@ -197,7 +194,7 @@ const data = {
     {
       title: "Projects",
       url: "#",
-      icon: Folder,
+      icon: PiFolderDuotone,
       items: [
         {
           title: "General",
@@ -220,7 +217,7 @@ const data = {
     {
       title: "Online Cources",
       url: "#",
-      icon: BookOpen,
+      icon: PiBookOpenDuotone,
       items: [
         {
           title: "General",

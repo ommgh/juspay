@@ -1,35 +1,35 @@
 import type { ComponentProps } from "react";
-import { Bug, User, Radio } from "lucide-react";
+import { PiBugBeetle, PiUser, PiBroadcast } from "react-icons/pi";
 import { Sidebar, SidebarContent, SidebarRail } from "@/components/ui/sidebar";
 
 const notifications = [
   {
     title: "You have a bug that needs...",
     time: "Just now",
-    icon: Bug,
-    iconColor: "text-blue-500",
+    icon: PiBugBeetle,
+    iconColor: "text-gray-500",
     bgColor: "bg-blue-50",
   },
   {
     title: "New user registered",
     time: "59 minutes ago",
-    icon: User,
+    icon: PiUser,
     iconColor: "text-gray-500",
     bgColor: "bg-gray-100",
   },
   {
     title: "You have a bug that needs...",
     time: "12 hours ago",
-    icon: Bug,
-    iconColor: "text-blue-500",
+    icon: PiBugBeetle,
+    iconColor: "text-gray-500",
     bgColor: "bg-blue-50",
   },
   {
     title: "Andi Lane subscribed to you",
     time: "Today, 11:59 AM",
-    icon: Radio,
-    iconColor: "text-purple-500",
-    bgColor: "bg-purple-50",
+    icon: PiBroadcast,
+    iconColor: "text-gray-500",
+    bgColor: "bg-gray-100",
   },
 ];
 

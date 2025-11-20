@@ -2,8 +2,13 @@
 
 import { cn } from "@/lib/utils";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Bell, History, Search, Star, Sun } from "lucide-react";
-import { ThemeToggler } from "../theme-toggler";
+import {
+  PiBellDuotone,
+  PiClockCounterClockwiseDuotone,
+  PiStarDuotone,
+  PiMagnifyingGlass,
+} from "react-icons/pi";
+import { ThemeToggler } from "@/components/theme-toggler";
 
 export function Header() {
   return (
@@ -17,7 +22,7 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <button className="inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground transition-colors">
-            <Star className="h-4 w-4" />
+            <PiStarDuotone className="h-4 w-4" />
           </button>
 
           <nav className="flex items-center gap-2 text-sm">
@@ -32,7 +37,7 @@ export function Header() {
 
       <div className="flex items-center gap-2">
         <div className="relative mr-1 hidden sm:block">
-          <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/70" />
+          <PiMagnifyingGlass className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/70" />
           <input
             type="text"
             placeholder="Search"
@@ -46,10 +51,10 @@ export function Header() {
         <ThemeToggler className="inline-flex h-8 w-8 items-center justify-center rounded-md text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors" />
 
         <button className="inline-flex h-8 w-8 items-center justify-center rounded-md text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors">
-          <History className="h-5 w-5" />
+          <PiClockCounterClockwiseDuotone className="h-5 w-5" />
         </button>
         <button className="inline-flex h-8 w-8 items-center justify-center rounded-md text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors">
-          <Bell className="h-5 w-5" />
+          <PiBellDuotone className="h-5 w-5" />
         </button>
 
         <SidebarTrigger side="right" />
