@@ -6,11 +6,13 @@ import {
   BookOpen,
   Bot,
   Command,
+  Folder,
   Frame,
   GalleryVerticalEnd,
   Map,
   PieChart,
   Settings2,
+  ShoppingBag,
   SquareTerminal,
 } from "lucide-react";
 import {
@@ -18,20 +20,15 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
 import { NavProjects } from "./nav-projects";
-import { NavUser } from "./nav-user";
-import { TeamSwitcher } from "./team-switcher";
 
-// This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   teams: [
     {
       name: "Acme Inc",
@@ -51,27 +48,35 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "User Profile",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Overview",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Projects",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Campaigns",
+          url: "#",
+        },
+        {
+          title: "Documents",
+          url: "#",
+        },
+        {
+          title: "Followers",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Account",
       url: "#",
       icon: Bot,
       items: [
@@ -90,7 +95,7 @@ const data = {
       ],
     },
     {
-      title: "Documentation",
+      title: "Corporate",
       url: "#",
       icon: BookOpen,
       items: [
@@ -113,7 +118,30 @@ const data = {
       ],
     },
     {
-      title: "Settings",
+      title: "Blog",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Social",
       url: "#",
       icon: Settings2,
       items: [
@@ -138,36 +166,107 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
+      title: "Default",
       url: "#",
       icon: PieChart,
+      items: [],
     },
     {
-      name: "Travel",
+      title: "e-Commerce",
       url: "#",
-      icon: Map,
+      icon: ShoppingBag,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Projects",
+      url: "#",
+      icon: Folder,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Online Cources",
+      url: "#",
+      icon: BookOpen,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
+          url: "#",
+        },
+      ],
     },
   ],
 };
 
 export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <a href="#">
+                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <Command className="size-4" />
+                </div>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-medium">Acme Inc</span>
+                  <span className="truncate text-xs">Enterprise</span>
+                </div>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
+        <NavProjects items={data.projects} />
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
