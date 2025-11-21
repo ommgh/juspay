@@ -4,24 +4,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Calendar } from "lucide-react";
-type OrderStatus =
-  | "In_Progress"
-  | "Complete"
-  | "Pending"
-  | "Approved"
-  | "Rejected";
-interface Orders {
-  id: string;
-  orderId: string;
-  user: {
-    name: string;
-    avatar: string;
-  };
-  project: string;
-  address: string;
-  date: string;
-  status: OrderStatus;
-}
+import type { Orders } from "@/lib/types";
+
 export const columns: ColumnDef<Orders>[] = [
   {
     id: "select",
@@ -48,7 +32,8 @@ export const columns: ColumnDef<Orders>[] = [
     header: "Order Id",
   },
   {
-    accessorKey: "user",
+    id: "user",
+    accessorFn: (row) => row.user.name,
     header: "User",
     cell: ({ row }) => {
       const user = row.original.user;
@@ -89,7 +74,7 @@ export const columns: ColumnDef<Orders>[] = [
 
       const statusStyles: Record<string, string> = {
         Pending: "text-sky-400 before:bg-sky-400",
-        In_Progress: "text-blue-500 before:bg-blue-500",
+        "In Progress": "text-blue-500 before:bg-blue-500",
         Complete: "text-emerald-500 before:bg-emerald-500",
         Rejected: "text-gray-400 before:bg-gray-400",
         Approved: "text-amber-400 before:bg-amber-400",

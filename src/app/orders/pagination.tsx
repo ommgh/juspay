@@ -1,6 +1,5 @@
 import { Table } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 
 interface DataTablePaginationProps<TData> {
@@ -10,20 +9,11 @@ interface DataTablePaginationProps<TData> {
 export function DataTablePagination<TData>({
   table,
 }: DataTablePaginationProps<TData>) {
-  const pageCount = table.getPageCount();
   const pageIndex = table.getState().pagination.pageIndex;
+  const pageOptions = table.getPageOptions();
+  const pageCount = pageOptions.length;
 
-  if (pageCount === 0) return null;
-
-  const maxButtons = 5;
-  const half = Math.floor(maxButtons / 2);
-
-  let start = Math.max(0, pageIndex - half);
-  if (start + maxButtons > pageCount) {
-    start = Math.max(0, pageCount - maxButtons);
-  }
-  const visibleCount = Math.min(maxButtons, pageCount);
-  const pages = Array.from({ length: visibleCount }, (_, i) => start + i);
+  if (pageCount <= 1) return null;
 
   const prevDisabled = !table.getCanPreviousPage();
   const nextDisabled = !table.getCanNextPage();
@@ -38,31 +28,25 @@ export function DataTablePagination<TData>({
           <Button
             variant="ghost"
             size="sm"
+            type="button"
             className={`h-8 w-8 p-0 ${prevDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
             onClick={() => table.previousPage()}
             disabled={prevDisabled}
-            aria-label="Previous page"
           >
             <ChevronLeft />
           </Button>
 
           <div className="inline-flex items-center space-x-1">
-            {pages.map((p) => {
+            {pageOptions.map((p) => {
               const isActive = p === pageIndex;
               return (
                 <button
                   key={p}
+                  type="button"
                   onClick={() => table.setPageIndex(p)}
-                  disabled={isActive}
                   aria-current={isActive ? "page" : undefined}
-                  className={`h-8 min-w-8 px-2 text-sm rounded-md
-                    flex items-center justify-center
-                    ${
-                      isActive
-                        ? "bg-muted/50  border-transparent pointer-events-none"
-                        : "bg-transparent text-sm hover:bg-muted/50"
-                    }
-                    ${isActive ? "" : "cursor-pointer"}`}
+                  className={`h-8 min-w-8 px-3 text-sm rounded-md
+                    ${isActive ? "bg-muted/60 cursor-default" : "hover:bg-muted/40 cursor-pointer"}`}
                 >
                   {p + 1}
                 </button>
@@ -73,10 +57,10 @@ export function DataTablePagination<TData>({
           <Button
             variant="ghost"
             size="sm"
+            type="button"
             className={`h-8 w-8 p-0 ${nextDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
             onClick={() => table.nextPage()}
             disabled={nextDisabled}
-            aria-label="Next page"
           >
             <ChevronRight />
           </Button>

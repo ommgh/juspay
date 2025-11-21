@@ -17,7 +17,9 @@ import { DataTable } from "./table";
 import { columns } from "./columns";
 
 async function fetchOrders() {
-  const response = await fetch(`http://localhost:3000/api/orders`);
+  const response = await fetch("http://localhost:3000/api/orders", {
+    cache: "no-cache",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch orders");

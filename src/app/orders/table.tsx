@@ -11,7 +11,7 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
 } from "@tanstack/react-table";
-
+import type { FilterFn } from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -20,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import {
   Select,
   SelectTrigger,
@@ -32,12 +33,33 @@ import { DataTablePagination } from "./pagination";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ColumnSorter } from "./sorting";
-import { PiFunnelSimple, PiMagnifyingGlass, PiPlus } from "react-icons/pi";
+import { PiMagnifyingGlass, PiPlus, PiFunnelSimple } from "react-icons/pi";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
+
+const globalSearchFn: FilterFn<any> = (row, _columnId, filterValue) => {
+  const search = String(filterValue).toLowerCase().trim();
+  if (!search) return true;
+
+  const original = row.original as any;
+
+  const haystack = [
+    original.orderId,
+    original.user?.name,
+    original.project,
+    original.address,
+    original.date,
+    original.status,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  return haystack.includes(search);
+};
 
 export function DataTable<TData, TValue>({
   columns,
@@ -45,43 +67,52 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = React.useState("");
-
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
   const [rowSelection, setRowSelection] = React.useState({});
+
+  const [pagination, setPagination] = React.useState({
+    pageIndex: 0,
+    pageSize: 10,
+  });
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
-    onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
     onRowSelectionChange: setRowSelection,
+    onPaginationChange: setPagination,
+
+    globalFilterFn: globalSearchFn,
+    onGlobalFilterChange: setGlobalFilter,
+
     state: {
       sorting,
       columnFilters,
       rowSelection,
+      globalFilter,
+      pagination,
     },
   });
 
   return (
     <div className="w-full space-y-4">
-      {/* Toolbar - Single Line Layout */}
       <div className="mb-6 flex items-center justify-between rounded-xl bg-muted/30 p-2">
-        {/* Left Controls Group */}
         <div className="flex items-center gap-2 pl-2">
-          {/* Add Button */}
           <Button
             variant="ghost"
             className="h-8 w-8 p-0 text-foreground hover:bg-muted"
           >
             <PiPlus className="h-5 w-5" />
           </Button>
-          {/* Filter Button */}
+
           <Select
             value={
               (table.getColumn("status")?.getFilterValue() as string) ?? "All"
@@ -93,28 +124,33 @@ export function DataTable<TData, TValue>({
               table.setPageIndex(0);
             }}
           >
-            <SelectTrigger className="w-[40px]">
-              <SelectValue placeholder="Filter by Status" />
+            <SelectTrigger
+              className="w-8 h-8 p-2 rounded-md border-none shadow-none hover:bg-muted"
+              showChevron={false}
+              aria-label="Filter by status"
+            >
+              <PiFunnelSimple size={8} />
+
+              <SelectValue className="sr-only" placeholder="Filter by Status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="All">All</SelectItem>
-              <SelectItem value="Pending">In_Progress</SelectItem>
-              <SelectItem value="Preparing">Complete</SelectItem>
-              <SelectItem value="Out for Delivery">Pending</SelectItem>
-              <SelectItem value="Delivered">Approved</SelectItem>
-              <SelectItem value="Cancelled">Rejected</SelectItem>
+              <SelectItem value="In Progress">In Progress</SelectItem>
+              <SelectItem value="Complete">Complete</SelectItem>
+              <SelectItem value="Pending">Pending</SelectItem>
+              <SelectItem value="Approved">Approved</SelectItem>
+              <SelectItem value="Rejected">Rejected</SelectItem>
             </SelectContent>
           </Select>
           <ColumnSorter column={table.getColumn("orderId")!} />
         </div>
 
-        {/* Search Input */}
         <div className="relative w-64 sm:w-80 pr-2">
           <PiMagnifyingGlass className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search"
-            value={globalFilter ?? ""}
-            onChange={(e) => setGlobalFilter(e.target.value)}
+            value={globalFilter}
+            onChange={(e) => table.setGlobalFilter(e.target.value)}
             className="pl-9 bg-background border-border shadow-sm focus-visible:ring-1"
           />
         </div>
@@ -168,7 +204,6 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-
       <div className="py-2">
         <DataTablePagination table={table} />
       </div>

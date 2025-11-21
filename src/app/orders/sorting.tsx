@@ -35,8 +35,8 @@ export function ColumnSorter<TData, TValue>({
             variant="ghost"
             size="sm"
             className="-ml-3 h-8 data-[state=open]:bg-accent"
+            aria-label={`Sort ${column.id}`}
           >
-            <PiArrowsDownUp />
             {column.getIsSorted() === "desc" ? (
               <ArrowDown />
             ) : column.getIsSorted() === "asc" ? (
@@ -46,11 +46,13 @@ export function ColumnSorter<TData, TValue>({
             )}
           </Button>
         </DropdownMenuTrigger>
+
         <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
             <ArrowUp className="h-3.5 w-3.5 text-muted-foreground/70" />
             Asc
           </DropdownMenuItem>
+
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
             <ArrowDown className="h-3.5 w-3.5 text-muted-foreground/70" />
             Desc

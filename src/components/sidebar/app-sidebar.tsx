@@ -146,12 +146,6 @@ const data = {
   ],
   projects: [
     {
-      title: "Default",
-      url: "#",
-      icon: PiChartPieSliceDuotone,
-      items: [],
-    },
-    {
       title: "e-Commerce",
       url: "#",
       icon: PiShoppingBagOpenDuotone,
