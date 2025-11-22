@@ -1,19 +1,32 @@
-import * as React from "react"
+import { useEffect, useState } from "react";
 
-const MOBILE_BREAKPOINT = 768
+export function useMediaQuery(query: string, defaultMatch = false) {
+  const [matches, setMatches] = useState(defaultMatch);
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
 
-  React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    const mql = window.matchMedia(query);
+    const handler = (e: MediaQueryListEvent) => setMatches(e.matches);
+
+    setMatches(mql.matches);
+
+    if ("addEventListener" in mql) {
+      mql.addEventListener("change", handler);
+      return () => mql.removeEventListener("change", handler);
+    } else {
+      // @ts-expect-error - legacy
+      mql.addListener(handler);
+      return () => {
+        // @ts-expect-error - legacy
+        mql.removeListener(handler);
+      };
     }
-    mql.addEventListener("change", onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener("change", onChange)
-  }, [])
+  }, [query]);
 
-  return !!isMobile
+  return matches;
+}
+
+export function useIsMobile(breakpointPx = 1024) {
+  return useMediaQuery(`(max-width: ${breakpointPx}px)`);
 }
