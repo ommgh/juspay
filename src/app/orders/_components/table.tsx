@@ -29,11 +29,11 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-import { Pagination } from "../../../components/table/pagination";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ColumnSorter } from "../../../components/table/sorting";
 import { PiMagnifyingGlass, PiPlus, PiFunnelSimple } from "react-icons/pi";
+import PaginationControls from "@/components/pagination-control";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -72,11 +72,6 @@ export function DataTable<TData, TValue>({
   );
   const [rowSelection, setRowSelection] = React.useState({});
 
-  const [pagination, setPagination] = React.useState({
-    pageIndex: 0,
-    pageSize: 10,
-  });
-
   const table = useReactTable({
     data,
     columns,
@@ -88,7 +83,6 @@ export function DataTable<TData, TValue>({
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onRowSelectionChange: setRowSelection,
-    onPaginationChange: setPagination,
 
     globalFilterFn: globalSearchFn,
     onGlobalFilterChange: setGlobalFilter,
@@ -98,9 +92,11 @@ export function DataTable<TData, TValue>({
       columnFilters,
       rowSelection,
       globalFilter,
-      pagination,
     },
   });
+
+  const currentPage = table.getState().pagination.pageIndex + 1;
+  const totalPages = table.getPageCount();
 
   return (
     <div className="w-full space-y-4">
@@ -204,8 +200,17 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="py-2">
-        <Pagination table={table} />
+      <div>
+        {totalPages > 1 && (
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={(page) => {
+              table.setPageIndex(page - 1);
+            }}
+            paginationItemsToDisplay={5}
+          />
+        )}
       </div>
     </div>
   );
