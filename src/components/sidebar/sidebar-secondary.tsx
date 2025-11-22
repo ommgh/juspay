@@ -75,7 +75,7 @@ const contacts = [
   { name: "Koray Okumus", avatar: "https://i.pravatar.cc/150?u=11" },
 ];
 
-export function RightSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
+export function SecondarySidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarRail />

@@ -29,10 +29,10 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-import { DataTablePagination } from "./pagination";
+import { Pagination } from "../../../components/table/pagination";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ColumnSorter } from "./sorting";
+import { ColumnSorter } from "../../../components/table/sorting";
 import { PiMagnifyingGlass, PiPlus, PiFunnelSimple } from "react-icons/pi";
 
 interface DataTableProps<TData, TValue> {
@@ -125,11 +125,11 @@ export function DataTable<TData, TValue>({
             }}
           >
             <SelectTrigger
-              className="w-8 h-8 p-2 rounded-md border-none shadow-none hover:bg-muted"
+              className="w-8 h-8 p-2 rounded-md border-none shadow-none hover:bg-muted mr-2 dark:bg-transparent"
               showChevron={false}
               aria-label="Filter by status"
             >
-              <PiFunnelSimple size={8} />
+              <PiFunnelSimple size={10} />
 
               <SelectValue className="sr-only" placeholder="Filter by Status" />
             </SelectTrigger>
@@ -145,7 +145,7 @@ export function DataTable<TData, TValue>({
           <ColumnSorter column={table.getColumn("orderId")!} />
         </div>
 
-        <div className="relative w-64 sm:w-80 pr-2">
+        <div className="relative w-40 sm:w-60 pr-2">
           <PiMagnifyingGlass className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search"
@@ -205,7 +205,7 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="py-2">
-        <DataTablePagination table={table} />
+        <Pagination table={table} />
       </div>
     </div>
   );

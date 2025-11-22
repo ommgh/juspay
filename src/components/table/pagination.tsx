@@ -2,13 +2,11 @@ import { Table } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-interface DataTablePaginationProps<TData> {
+interface PaginationProps<TData> {
   table: Table<TData>;
 }
 
-export function DataTablePagination<TData>({
-  table,
-}: DataTablePaginationProps<TData>) {
+export function Pagination<TData>({ table }: PaginationProps<TData>) {
   const pageIndex = table.getState().pagination.pageIndex;
   const pageOptions = table.getPageOptions();
   const pageCount = pageOptions.length;

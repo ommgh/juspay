@@ -5,14 +5,13 @@ import {
   PiIdentificationBadgeDuotone,
   PiFolderDuotone,
   PiShoppingBagOpenDuotone,
-  PiChartPieSliceDuotone,
   PiBookOpenDuotone,
   PiIdentificationCardDuotone,
   PiUsersThreeDuotone,
   PiNotebookDuotone,
   PiChatsTeardropDuotone,
 } from "react-icons/pi";
-import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react";
+import { Command } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -23,10 +22,10 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
-import { NavProjects } from "./nav-projects";
+import { NavSecondary } from "./nav-secondary";
 
 const data = {
-  navMain: [
+  secondary: [
     {
       title: "User Profile",
       url: "#",
@@ -144,15 +143,15 @@ const data = {
       ],
     },
   ],
-  projects: [
+  main: [
     {
       title: "e-Commerce",
       url: "#",
       icon: PiShoppingBagOpenDuotone,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Orders",
+          url: "/orders",
         },
         {
           title: "Team",
@@ -238,8 +237,8 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavProjects items={data.projects} />
-        <NavMain items={data.navMain} />
+        <NavMain items={data.main} />
+        <NavSecondary items={data.secondary} />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

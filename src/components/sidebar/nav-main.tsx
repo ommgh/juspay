@@ -1,6 +1,7 @@
 "use client";
 
 import { LuChevronRight } from "react-icons/lu";
+import { PiChartPieSliceDuotone } from "react-icons/pi";
 import { IconType } from "react-icons";
 import {
   Collapsible,
@@ -17,6 +18,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export function NavMain({
   items,
@@ -34,7 +36,15 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Pages</SidebarGroupLabel>
+      <SidebarGroupLabel>Dashboards</SidebarGroupLabel>
+      <SidebarMenuItem className="py-1">
+        <Link href="/">
+          <SidebarMenuButton className="bg-accent-foreground/5 border-l-4 pl-6 border-foreground/60">
+            <PiChartPieSliceDuotone />
+            <span>Default</span>
+          </SidebarMenuButton>
+        </Link>
+      </SidebarMenuItem>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
