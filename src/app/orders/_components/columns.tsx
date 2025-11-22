@@ -1,5 +1,4 @@
 "use client";
-
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -26,10 +25,12 @@ export const columns: ColumnDef<Orders>[] = [
         aria-label="Select row"
       />
     ),
+    enableSorting: false,
   },
   {
     accessorKey: "orderId",
     header: "Order Id",
+    enableSorting: true,
   },
   {
     id: "user",
@@ -71,7 +72,6 @@ export const columns: ColumnDef<Orders>[] = [
     header: "Status",
     cell: ({ row }) => {
       const status = row.getValue("status") as string;
-
       const statusStyles: Record<string, string> = {
         Pending: "text-sky-400 before:bg-sky-400",
         "In Progress": "text-blue-500 before:bg-blue-500",
@@ -79,7 +79,6 @@ export const columns: ColumnDef<Orders>[] = [
         Rejected: "text-gray-400 before:bg-gray-400",
         Approved: "text-amber-400 before:bg-amber-400",
       };
-
       return (
         <div
           className={`px-3 py-1 text-xs sm:text-sm font-medium rounded-full ${statusStyles[status]}`}

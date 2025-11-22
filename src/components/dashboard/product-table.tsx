@@ -31,23 +31,28 @@ const ProductTable = () => (
     <h3 className="text-sm font-semibold text-foreground mb-6">
       Top Selling Products
     </h3>
-    <div className="w-full overflow-auto">
+
+    <div className="w-full overflow-x-auto">
       <table className="w-full text-sm text-left">
         <thead>
           <tr className="text-muted-foreground border-b border-border">
-            <th className="font-normal pb-3 pl-1">Name</th>
-            <th className="font-normal pb-3">Price</th>
-            <th className="font-normal pb-3">Quantity</th>
-            <th className="font-normal pb-3">Amount</th>
+            <th className="font-normal pb-3 px-4 whitespace-nowrap">Name</th>
+            <th className="font-normal pb-3 px-4 whitespace-nowrap">Price</th>
+            <th className="font-normal pb-3 px-4 whitespace-nowrap">
+              Quantity
+            </th>
+            <th className="font-normal pb-3 px-4 whitespace-nowrap">Amount</th>
           </tr>
         </thead>
         <tbody className="text-foreground">
           {productsData.map((product, i) => (
             <tr key={i} className="group hover:bg-muted/50 transition-colors">
-              <td className="py-3 pl-1">{product.name}</td>
-              <td className="py-3">{product.price}</td>
-              <td className="py-3">{product.quantity}</td>
-              <td className="py-3">{product.amount}</td>
+              <td className="py-3 px-4 whitespace-nowrap">{product.name}</td>
+              <td className="py-3 px-4 whitespace-nowrap">{product.price}</td>
+              <td className="py-3 px-4 whitespace-nowrap">
+                {product.quantity}
+              </td>
+              <td className="py-3 px-4 whitespace-nowrap">{product.amount}</td>
             </tr>
           ))}
         </tbody>

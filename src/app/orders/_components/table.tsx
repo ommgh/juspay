@@ -98,6 +98,8 @@ export function DataTable<TData, TValue>({
   const currentPage = table.getState().pagination.pageIndex + 1;
   const totalPages = table.getPageCount();
 
+  const orderIdColumn = table.getColumn("orderId");
+
   return (
     <div className="w-full space-y-4">
       <div className="mb-6 flex items-center justify-between rounded-xl bg-muted/30 p-2">
@@ -138,7 +140,13 @@ export function DataTable<TData, TValue>({
               <SelectItem value="Rejected">Rejected</SelectItem>
             </SelectContent>
           </Select>
-          <ColumnSorter column={table.getColumn("orderId")!} />
+
+          {orderIdColumn && (
+            <ColumnSorter
+              key={`sorter-${sorting.length}-${sorting[0]?.id}-${sorting[0]?.desc}`}
+              column={orderIdColumn}
+            />
+          )}
         </div>
 
         <div className="relative w-40 sm:w-60 pr-2">
@@ -200,7 +208,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div>
+      <div className="py-2">
         {totalPages > 1 && (
           <PaginationControls
             currentPage={currentPage}
