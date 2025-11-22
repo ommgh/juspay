@@ -45,6 +45,7 @@ export function NavMain({
           </SidebarMenuButton>
         </Link>
       </SidebarMenuItem>
+
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

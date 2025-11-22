@@ -6,6 +6,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/sidebar/sidebar-main";
 import { Header } from "@/components/sidebar/header";
 import { SecondarySidebar } from "@/components/sidebar/sidebar-secondary";
+import { ReactScan } from "@/components/react-scan";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,12 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          async
-          crossOrigin="anonymous"
-          src="https://tweakcn.com/live-preview.min.js"
-        />
+        <script src="https://unpkg.com/react-scan/dist/auto.global.js" />
       </head>
+      <ReactScan />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
