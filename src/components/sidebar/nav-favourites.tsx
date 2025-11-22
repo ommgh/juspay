@@ -6,7 +6,7 @@ export function SidebarFavorites({
   items: { title: string; url?: string }[];
 }) {
   return (
-    <SidebarMenuItem className="py-3">
+    <SidebarMenuItem className="pt-3">
       <div className="px-4">
         <div className="flex justify-start gap-8 items-center mb-3">
           <h4 className="text-sm font-medium text-muted-foreground cursor-pointer">
