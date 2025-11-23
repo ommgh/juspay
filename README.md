@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dashboard — UI Engineer Assignment
 
-## Getting Started
+A clean, performant, and fully responsive **Next.js + TypeScript** dashboard built for the UI Engineer role. The project focuses on clean component architecture, pixel‑perfect UI using **TailwindCSS** and **@shadcn/ui**, and a scalable code structure suited for production-grade dashboards.
 
-First, run the development server:
+---
+
+## Tech Stack
+
+* **Next.js (App Router)** — Server Components, optimized routing
+* **TypeScript** — Type‑safe development
+* **TailwindCSS** — Utility‑first styling
+* **@shadcn/ui** — Accessible, customizable UI components
+* **Bun** — Fast package manager & dev environment
+
+---
+
+## Project Structure
+
+```
+juspay/
+├── public/
+├── src/
+│ ├── app/
+│ │ ├── api/orders/ # API route for orders
+│ │ ├── orders/ # Orders page
+│ │ ├── favicon.ico
+│ │ ├── globals.css
+│ │ ├── layout.tsx
+│ │ └── page.tsx # Dashboard Home
+│ │
+│ ├── components/
+│ │ ├── dashboard/ # Dashboard widgets, cards, charts
+│ │ ├── effects/ # UI animations/effects
+│ │ ├── sidebar/ # Sidebar navigation components
+│ │ ├── table/ # Table component, sorting, pagination
+│ │ └── ui/ # shadcn/ui wrappers
+│ │ ├── theme-provider.tsx
+│ │ └── theme-toggler.tsx
+│ │
+│ ├── hooks/ # Custom hooks (useIsMobile, usePagination)
+│ └── lib/ # Utilities, helpers
+│
+├── .gitignore
+├── biome.json
+├── bun.lock
+├── components.json
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── README.md
+└── tsconfig.json
+```
+
+---
+
+## Features
+
+### Fully Responsive Dashboard
+
+* Pixel-perfect across desktop, tablet, and mobile screens
+
+### Data Table
+
+* Sorting
+* Filtering
+* Pagination
+* Mobile‑friendly table without breaking layout
+
+### Clean Component Architecture
+
+* Reusable UI components
+* Server/Client component split for performance
+* DRY & maintainable table config using `ColumnDef`
+
+### Configurable Pagination Controls
+
+* Works with server or client data
+* Dynamic highlighting of active page
+* Disabled next/prev based on page availability
+
+### Modern UI Styling
+
+* TailwindCSS + shadcn/ui components
+* Consistent design tokens & spacing
+* Accessible interactions
+
+---
+
+## Installation
+
+### Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone https://github.com/ommgh/juspay
+cd juspay
+```
+
+### Install dependencies (Bun)
+
+```bash
+bun install
+```
+
+---
+
+## Running the Project
+
+### Development
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Start
 
-## Learn More
+```bash
+bun start
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
