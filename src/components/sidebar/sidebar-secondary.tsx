@@ -77,7 +77,7 @@ const contacts = [
 
 export function SecondarySidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props}>
+    <Sidebar {...props} className="p-2">
       <SidebarRail />
       <SidebarContent>
         <div className="flex flex-col gap-8 p-4 pt-6">

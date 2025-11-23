@@ -39,7 +39,7 @@ export function NavMain({
       <SidebarGroupLabel>Dashboards</SidebarGroupLabel>
       <SidebarMenuItem className="py-1">
         <Link href="/">
-          <SidebarMenuButton className="bg-accent-foreground/5 border-l-4 pl-6 border-foreground/60">
+          <SidebarMenuButton isActive={true} className="px-7">
             <PiChartPieSliceDuotone />
             <span>Default</span>
           </SidebarMenuButton>

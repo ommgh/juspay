@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "@/lib/utils";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import {
@@ -9,8 +8,24 @@ import {
   PiMagnifyingGlass,
 } from "react-icons/pi";
 import { ThemeToggler } from "@/components/theme-toggler";
+import { usePathname } from "next/navigation";
 
 export function Header() {
+  const pathname = usePathname();
+  const getBreadcrumb = () => {
+    if (pathname === "/") {
+      return "Default";
+    }
+    if (pathname === "/orders") {
+      return "Orders";
+    }
+
+    const segment = pathname.split("/").filter(Boolean)[0];
+    return segment
+      ? segment.charAt(0).toUpperCase() + segment.slice(1)
+      : "Default";
+  };
+
   return (
     <header
       className={cn(
@@ -19,22 +34,21 @@ export function Header() {
     >
       <div className="flex items-center gap-4">
         <SidebarTrigger className="-ml-1" />
-
         <div className="flex items-center gap-3">
           <button className="inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground transition-colors">
             <PiStarDuotone className="h-4 w-4" />
           </button>
-
           <nav className="flex items-center gap-2 text-sm">
             <span className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors">
               Dashboards
             </span>
             <span className="text-muted-foreground/30">/</span>
-            <span className="font-medium text-foreground">Default</span>
+            <span className="font-medium text-foreground">
+              {getBreadcrumb()}
+            </span>
           </nav>
         </div>
       </div>
-
       <div className="flex items-center gap-2">
         <div className="relative mr-1 hidden sm:block">
           <PiMagnifyingGlass className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/70" />
@@ -47,16 +61,13 @@ export function Header() {
             <span className="text-xs">⌘</span>/
           </div>
         </div>
-
         <ThemeToggler className="inline-flex h-8 w-8 items-center justify-center rounded-md text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors" />
-
         <button className="inline-flex h-8 w-8 items-center justify-center rounded-md text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors">
           <PiClockCounterClockwiseDuotone className="h-5 w-5" />
         </button>
         <button className="inline-flex h-8 w-8 items-center justify-center rounded-md text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors">
           <PiBellDuotone className="h-5 w-5" />
         </button>
-
         <SidebarTrigger side="right" />
       </div>
     </header>

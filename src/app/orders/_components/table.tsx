@@ -33,7 +33,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ColumnSorter } from "../../../components/table/sorting";
 import { PiMagnifyingGlass, PiPlus, PiFunnelSimple } from "react-icons/pi";
-import PaginationControls from "@/components/pagination-control";
+import PaginationControls from "@/components/table/pagination-control";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -208,16 +208,21 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+
       <div className="py-2">
         {totalPages > 1 && (
-          <PaginationControls
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={(page) => {
-              table.setPageIndex(page - 1);
-            }}
-            paginationItemsToDisplay={5}
-          />
+          <div className="w-full flex justify-end px-2 sm:px-0">
+            <div className="shrink-0">
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={(page) => {
+                  table.setPageIndex(page - 1);
+                }}
+                paginationItemsToDisplay={5}
+              />
+            </div>
+          </div>
         )}
       </div>
     </div>

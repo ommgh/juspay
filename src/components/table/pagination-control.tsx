@@ -31,7 +31,7 @@ export default function PaginationControls({
       <PaginationContent>
         <PaginationItem>
           <PaginationLink
-            className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
+            className="aria-disabled:pointer-events-none cursor-pointer aria-disabled:opacity-50"
             onClick={() => currentPage !== 1 && onPageChange(currentPage - 1)}
             aria-label="Go to previous page"
             aria-disabled={currentPage === 1}
@@ -47,6 +47,7 @@ export default function PaginationControls({
               onClick={() => onPageChange(page)}
               isActive={page === currentPage}
               role="button"
+              className="cursor-pointer"
             >
               {page}
             </PaginationLink>
@@ -55,7 +56,7 @@ export default function PaginationControls({
 
         <PaginationItem>
           <PaginationLink
-            className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
+            className="aria-disabled:pointer-events-none cursor-pointer aria-disabled:opacity-50"
             onClick={() =>
               currentPage !== totalPages && onPageChange(currentPage + 1)
             }

@@ -14,7 +14,8 @@ const statsData = [
     value: "3,781",
     change: "+11.01%",
     trend: "up",
-    bg: "bg-blue-50/60",
+    bg: "bg-[#E3F5FF] dark:bg-[#E3F5FF]",
+    textColor: "text-[#1C1C1C]",
   },
   {
     title: "Orders",
@@ -22,6 +23,7 @@ const statsData = [
     change: "-0.03%",
     trend: "down",
     bg: "bg-card",
+    textColor: "text-foreground",
   },
   {
     title: "Revenue",
@@ -29,35 +31,50 @@ const statsData = [
     change: "+15.03%",
     trend: "up",
     bg: "bg-card",
+    textColor: "text-foreground",
   },
   {
     title: "Growth",
     value: "30.1%",
     change: "+6.08%",
     trend: "up",
-    bg: "bg-blue-50/60",
+    bg: "bg-[#E5ECF6] dark:bg-[#E5ECF6]",
+    textColor: "text-[#1C1C1C]",
   },
 ];
+
 const StatCard = ({ data }: { data: (typeof statsData)[0] }) => (
   <div
     className={cn("rounded-xl p-6 flex flex-col justify-between h-32", data.bg)}
   >
-    <h3 className="text-sm font-medium text-foreground">{data.title}</h3>
+    <h3
+      className={cn("text-sm font-medium", data.textColor || "text-foreground")}
+    >
+      {data.title}
+    </h3>
     <div className="flex items-end gap-2">
-      <span className="text-2xl font-bold text-foreground">{data.value}</span>
+      <span
+        className={cn(
+          "text-2xl font-bold",
+          data.textColor || "text-foreground",
+        )}
+      >
+        {data.value}
+      </span>
       <div className="flex items-center gap-1 text-xs mb-1.5">
         <span
-          className={cn(
-            "font-medium",
-            data.trend === "up" ? "text-foreground" : "text-foreground",
-          )}
+          className={cn("font-medium", data.textColor || "text-foreground")}
         >
           {data.change}
         </span>
         {data.trend === "up" ? (
-          <ArrowUpRight className="h-3 w-3" />
+          <ArrowUpRight
+            className={cn("h-3 w-3", data.textColor || "text-foreground")}
+          />
         ) : (
-          <ArrowDownRight className="h-3 w-3" />
+          <ArrowDownRight
+            className={cn("h-3 w-3", data.textColor || "text-foreground")}
+          />
         )}
       </div>
     </div>
