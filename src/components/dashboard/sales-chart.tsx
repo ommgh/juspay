@@ -1,10 +1,10 @@
 import { Tooltip, ResponsiveContainer, Cell, PieChart, Pie } from "recharts";
 
 const salesData = [
-  { name: "Direct", value: 300.56, color: "#1C1C1C" },
-  { name: "Affiliate", value: 135.18, color: "#BAEDBD" },
-  { name: "Sponsored", value: 154.02, color: "#95A4FC" },
-  { name: "E-mail", value: 48.96, color: "#B1E3FF" },
+  { name: "Direct", value: 300.56, color: "var(--chart-1)" },
+  { name: "Affiliate", value: 135.18, color: "var(--chart-2)" },
+  { name: "Sponsored", value: 154.02, color: "var(--chart-3)" },
+  { name: "E-mail", value: 48.96, color: "var(--chart-4)" },
 ];
 interface CustomTooltipProps {
   active?: boolean;
@@ -35,8 +35,8 @@ const TotalSalesChart = () => (
   <div className="bg-card rounded-xl p-6 h-full flex flex-col">
     <h3 className="text-sm font-semibold text-foreground mb-6">Total Sales</h3>
 
-    <div className="relative flex-1 min-h-40 flex items-center justify-center">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="relative h-40 flex items-center justify-center">
+      <ResponsiveContainer width="100%" height={180}>
         <PieChart>
           <Pie
             data={salesData}

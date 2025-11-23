@@ -12,6 +12,9 @@ A clean, performant, and fully responsive **Next.js + TypeScript** dashboard bui
 * **@shadcn/ui** — Accessible, customizable UI components
 * **Bun** — Fast package manager & dev environment
 
+## Navigation
+* Click the e-Commerce item in the sidebar to expand the dropdown, then select Orders to open the Orders page
+
 ---
 
 ## Project Structure
