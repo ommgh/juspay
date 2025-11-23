@@ -2,7 +2,7 @@ import { DataTable } from "./_components/table";
 import { columns } from "./_components/columns";
 
 async function fetchOrders() {
-  const response = await fetch(`http:localhost:3000/api/orders`, {
+  const response = await fetch(`https://juspay-ochre.vercel.app/api/orders`, {
     cache: "no-cache",
   });
 

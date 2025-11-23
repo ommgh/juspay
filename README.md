@@ -33,7 +33,7 @@ juspay/
 │ │ ├── effects/ # UI animations/effects
 │ │ ├── sidebar/ # Sidebar navigation components
 │ │ ├── table/ # Table component, sorting, pagination
-│ │ └── ui/ # shadcn/ui wrappers
+│ │ └── ui/ # Primitive UI Components
 │ │ ├── theme-provider.tsx
 │ │ └── theme-toggler.tsx
 │ │
